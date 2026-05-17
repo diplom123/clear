@@ -665,7 +665,7 @@
       <img src="img_windows.jpg" alt="Мойка окон на высоте" style="width:150px;height:150px;border-radius:50%;object-fit:cover;flex-shrink:0;">
       <div class="info">
         <h3>МОЙКА ОКОН</h3>
-        <p>Протирка окон, подоконников, оконных рам и москитных сеток. Работа на любой высоте.</p>
+        <p>Протирка нокон, подоконников, оконных рам и москитных сеток. Работа на любой высоте.</p>
         <p>1-2 исполнителя;<br>работа 2-5 часов</p>
         <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
       </div>
@@ -920,23 +920,37 @@
 <div class="page" id="page-form">
   <section>
     <div style="text-align:center;margin-bottom:30px;">
-      <img src="img_hero.jpg" alt="Уборка КМВ" style="max-width:320px;width:100%;border-radius:12px;">
+      <div style="font-size:96px;">🧹</div>
     </div>
     <div class="form-wrap">
-      <h2 style="font-size:18px;font-weight:600;margin-bottom:20px;">Заявка на оформление услуги</h2>
-      <input type="text" placeholder="Имя">
-      <input type="email" placeholder="E-mail *">
-      <input type="text" placeholder="Тема">
-      <input type="tel" placeholder="+7 ** *** ** **">
-      <textarea placeholder="Ваше сообщение *"></textarea>
-      <label class="checkbox-label">
-        <input type="checkbox">
-        Я согласен на обработку <a href="privacy-policy.html" target="_blank">персональных данных</a> и с условиями <a href="terms-of-use.html" target="_blank">пользовательского соглашения</a>
-      </label>
-      <button class="btn-submit">отправить</button>
+      <h2 style="font-size:20px;margin-bottom:20px;">Оформление услуги</h2>
+      <form action="https://formspree.io/f/ВАШ_КЛЮЧ" method="POST">
+        <input type="text" name="name" placeholder="Имя *" required>
+        <input type="email" name="email" placeholder="E-mail *" required>
+        
+        <!-- ВЫПАДАЮЩИЙ СПИСОК ВМЕСТО "ТЕМА" -->
+        <select name="service" required style="width:100%; padding:12px 14px; border:1px solid #ccc; border-radius:4px; font-size:14px; margin-bottom:12px; background:white; cursor:pointer;">
+          <option value="" disabled selected>-- Выберите услугу --</option>
+          <option value="Поддерживающая уборка">Поддерживающая уборка</option>
+          <option value="Комплексная уборка">Комплексная уборка</option>
+          <option value="Генеральная уборка">Генеральная уборка</option>
+          <option value="Мойка окон">Мойка окон</option>
+          <option value="Химчистка мягкой мебели">Химчистка мягкой мебели</option>
+          <option value="Уборка после ремонта">Уборка после ремонта</option>
+          <option value="Дезинфекция">Дезинфекция</option>
+          <option value="Другое">Другое (укажите в сообщении)</option>
+        </select>
+        
+        <input type="tel" name="phone" placeholder="+7 ** *** ** **" required>
+        <textarea name="message" placeholder="Ваше сообщение *" required></textarea>
+        <label class="checkbox-label">
+          <input type="checkbox" name="agreement" required> Я согласен на обработку <a href="privacy-policy.html" target="_blank">персональных данных</a> и с условиями <a href="terms-of-use.html" target="_blank">пользовательского соглашения</a>
+        </label>
+        <button type="submit" class="btn-submit">Отправить заявку</button>
+      </form>
     </div>
   </section>
-  <footer>©2026 lean</footer>
+  <footer>©2026 Уборка КМВ</footer>
 </div>
 
 <!-- FLOATING CALL BUTTON -->
