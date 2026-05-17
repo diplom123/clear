@@ -992,6 +992,34 @@
     currentReview = (currentReview + 1) % reviews.length;
     setReview(currentReview);
   }, 4000);
+  <script>
+  // ... существующий код (массив отзывов, функции setReview, showPage, интервал и т.д.) ...
+
+  // ↓↓↓ СЮДА ВСТАВЬТЕ НОВЫЙ КОД (заглушку) ↓↓↓
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const msg = document.createElement('div');
+      msg.textContent = '✅ Заявка принята! Мы свяжемся с вами в ближайшее время.';
+      msg.style.position = 'fixed';
+      msg.style.bottom = '80px';
+      msg.style.left = '50%';
+      msg.style.transform = 'translateX(-50%)';
+      msg.style.backgroundColor = '#6abf45';
+      msg.style.color = 'white';
+      msg.style.padding = '12px 24px';
+      msg.style.borderRadius = '40px';
+      msg.style.fontSize = '14px';
+      msg.style.zIndex = '9999';
+      msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+      document.body.appendChild(msg);
+      form.reset();
+      setTimeout(() => msg.remove(), 3000);
+    });
+  });
+  // ↑↑↑ КОНЕЦ ВСТАВКИ ↑↑↑
+
+</script>
 </script>
 </body>
 </html>
