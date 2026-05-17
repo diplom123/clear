@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уборка КМВ — Клининговая компания</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #6abf45;
+    --green-light: #b2d98a;
+    --green-nav: #a8d880;
+    --green-dark: #4a9a20;
+    --gray-bg: #f0f0f0;
+    --text: #333;
+    --white: #fff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Roboto', sans-serif; color: var(--text); scroll-behavior: smooth; }
+
+  /* TOP BAR */
+  .top-bar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 40px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .top-bar a { color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .top-bar a:hover { color: var(--green); }
+  .top-bar .green-link { color: var(--green); }
+
+  /* HEADER */
+  .site-header {
+    text-align: center;
+    padding: 20px 20px 10px;
+    background: #fff;
+  }
+  .site-header .cart-icon { font-size: 36px; color: var(--green); }
+  .site-header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: underline;
+    display: block;
+    margin: 6px 0;
+  }
+  .social-icons { display: flex; justify-content: center; gap: 16px; margin: 10px 0; }
+  .social-icons a {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .social-icons a:hover { transform: scale(1.12); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+  .social-icons a.vk { background: #4c75a3; }
+  .social-icons a.max { background: #8a2be2; }
+  .social-icons a.tg { background: #0088cc; }
+  .social-icons a svg { width: 20px; height: 20px; fill: #fff; }
+
+  /* NAV */
+  nav {
+    background: var(--green-nav);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav ul {
+    display: flex; list-style: none;
+    justify-content: center; flex-wrap: wrap;
+  }
+  nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: color 0.2s, background 0.2s;
+  }
+  nav ul li a:hover, nav ul li a.active { color: var(--green-dark); font-weight: 600; }
+
+  /* SECTIONS */
+  section { padding: 60px 40px; }
+  section.gray { background: var(--gray-bg); }
+  .section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+  .section-title.dark { color: #333; font-weight: 700; }
+
+  /* HERO */
+  #home {
+    text-align: center;
+    padding: 50px 40px;
+  }
+  #home h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--green);
+    text-decoration: underline;
+    margin-bottom: 30px;
+  }
+  #home .hero-img {
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* WHY US */
+  .three-cols {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .three-cols .col { max-width: 200px; }
+  .three-cols .col img {
+    width: 130px; height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--green-light);
+    margin-bottom: 14px;
+  }
+  .three-cols .col p {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* SERVICES LIST */
+  .service-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service-item img {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .service-item .info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .service-item .info p { font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+  .btn-order {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 28px;
+    background: var(--green-light);
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-order:hover { background: var(--green); color: #fff; }
+
+  /* SPECIAL OFFERS */
+  .special-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .special-card {
+    border: 1px solid var(--green-light);
+    border-radius: 6px;
+    width: 400px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .special-card .card-head {
+    background: var(--green-light);
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .special-card .card-body { padding: 20px; }
+  .special-card .price {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 14px 0;
+  }
+  .special-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+  /* DISCOUNTS */
+  .discount-item {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+  .discount-item .check-icon { font-size: 64px; color: var(--green); flex-shrink: 0; }
+  .discount-item p { font-size: 14px; line-height: 1.6; }
+  .discount-item strong { display: block; margin-bottom: 6px; font-size: 15px; }
+
+  /* PRICES */
+  .price-slider-wrap { position: relative; max-width: 900px; margin: 0 auto; }
+  .price-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .price-card {
+    border: 2px solid var(--green-light);
+    border-radius: 6px;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .price-card .p-head {
+    background: var(--green-light);
+    padding: 12px 10px;
+    font-size: 13px;
+    min-height: 50px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .price-card .p-body { padding: 16px 10px; }
+  .price-card .p-label { font-size: 12px; color: #777; margin-bottom: 8px; }
+  .price-card .p-price { font-size: 22px; font-weight: 700; }
+
+  /* ABOUT */
+  .about-wrap {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .about-wrap img {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .about-wrap h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: var(--green);
+    text-decoration: underline;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .about-wrap p { font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
+
+  /* CONTACTS */
+  .contacts-wrap {
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .contacts-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+  .contacts-info .ci { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 14px; }
+  .contacts-info .ci a { color: var(--green); text-decoration: none; }
+  .contacts-info .ci a:hover { text-decoration: underline; }
+  .map-placeholder {
+    flex: 1;
+    min-width: 280px;
+    background: #e8e8e8;
+    border-radius: 6px;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+  }
+  .social-btns { display: flex; gap: 10px; margin-top: 16px; }
+  .social-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .social-btn.vk { background: #4c75a3; }
+  .social-btn.tg { background: #0088cc; }
+
+  /* GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .gallery-item {
+    background: var(--green);
+    border-radius: 6px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item .placeholder-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+  }
+  .gallery-item .before-after-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #29b6f6;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    padding: 6px 18px;
+    font-size: 11px;
+    color: white;
+    white-space: nowrap;
+  }
+
+  /* EMPLOYEES */
+  .employees-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .employee-card {
+    background: var(--gray-bg);
+    border-radius: 8px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .employee-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* REVIEWS */
+  .review-carousel {
+    background: var(--gray-bg);
+    text-align: center;
+    padding: 50px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+  .review-carousel .reviewer-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .review-carousel .reviewer-role { font-size: 13px; color: #888; margin-bottom: 16px; }
+  .review-carousel .review-text { font-size: 14px; line-height: 1.7; }
+  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s; }
+  .dot.active { background: var(--green); }
+
+  /* REVIEW FORM */
+  .review-form { max-width: 700px; margin: 30px auto 0; }
+  .review-form h3 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+
+  /* FORM */
+  .form-wrap { max-width: 600px; margin: 0 auto; }
+  .form-wrap p { font-size: 14px; color: #666; margin-bottom: 20px; }
+  input[type=text], input[type=email], input[type=tel], textarea, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus { border-color: var(--green); }
+  textarea { height: 100px; resize: vertical; }
+  .btn-submit {
+    padding: 12px 32px;
+    background: var(--green-light);
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+    color: #333;
+  }
+  .btn-submit:hover { background: var(--green); color: #fff; }
+  .checkbox-label { font-size: 13px; color: #555; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+  .checkbox-label a { color: var(--green); }
+  .checkbox-label input { margin-top: 2px; flex-shrink: 0; }
+
+  /* EQUIPMENT */
+  .equipment-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .equipment-grid .eq-item {
+    width: 150px; height: 130px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--green-light), var(--green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+
+  /* APPLICATION FORM (main page) */
+  .application-section {
+    background: var(--gray-bg);
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .application-section h2 { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+  .application-inner {
+    display: flex;
+    gap: 40px;
+    max-width: 800px;
+    margin: 30px auto 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .application-inner .desc { text-align: left; font-size: 14px; color: #555; flex: 1; min-width: 200px; }
+  .application-inner .fields { flex: 1; min-width: 240px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #777;
+    background: #fff;
+    border-top: 1px solid #eee;
+  }
+
+  /* FLOATING CALL BUTTON */
+  .float-call {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 54px; height: 54px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 999;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(106,191,69,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(106,191,69,0.7); }
+  }
+
+  /* PAGE VISIBILITY */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  @media (max-width: 700px) {
+    nav ul { flex-wrap: wrap; }
+    nav ul li a { padding: 10px 12px; font-size: 12px; }
+    .service-item { flex-direction: column; }
+    .about-wrap { flex-direction: column; }
+    .gallery-grid, .employees-grid { grid-template-columns: repeat(2, 1fr); }
+    .price-cards { gap: 10px; }
+    .price-card { width: 160px; }
+    section { padding: 40px 20px; }
+    .top-bar { padding: 8px 16px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="tel:+79380779598">📞 +7(938) 077-95-98</a>
+  <a href="#">📍 г. Пятигорск, Крайнего 49</a>
+  <a href="#" class="green-link">💬 Перейти в МАХ</a>
+  <a href="mailto:mkumykov23@gmail.com">✉️ mkumykov23@gmail.com</a>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="cart-icon">🛒</div>
+  <a href="#" class="logo" onclick="showPage('home')">Уборка КМВ</a>
+  <div class="social-icons">
+    <a href="#" class="vk" title="ВКонтакте">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 13.5h-1.6c-.6 0-.79-.48-1.87-1.57-.94-.94-1.35-.94-1.35 0v1.57c0 .43-.14.57-1.21.57-1.79 0-3.77-1.08-5.17-3.1C5.52 10.5 5 8.5 5 8.07c0-.24.09-.46.57-.46h1.6c.43 0 .59.19.75.64.82 2.37 2.2 4.44 2.77 4.44.21 0 .31-.1.31-.63V9.71c-.07-1.13-.66-1.23-.66-1.63 0-.2.16-.4.42-.4h2.52c.36 0 .49.19.49.62v3.33c0 .36.16.49.26.49.21 0 .39-.13.78-.52 1.21-1.36 2.07-3.44 2.07-3.44.11-.24.31-.46.74-.46h1.6c.48 0 .59.25.48.62-.2.93-2.16 3.7-2.16 3.7-.17.28-.23.41 0 .72.17.23.72.72 1.09 1.15.68.77 1.2 1.42 1.34 1.87.14.44-.08.67-.53.67z"/></svg>
+    </a>
+    <a href="#" class="max" title="МАХ">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="12" fill="#8a2be2"/><text x="3" y="16" font-size="8" font-weight="bold" fill="white" font-family="Arial">МАХ</text></svg>
+    </a>
+    <a href="#" class="tg" title="Telegram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Главная</a></li>
+    <li><a href="#" onclick="showPage('services')" id="nav-services">Услуги</a></li>
+    <li><a href="#" onclick="showPage('prices')" id="nav-prices">Цены</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">О нас</a></li>
+    <li><a href="#" onclick="showPage('contacts')" id="nav-contacts">Контакты</a></li>
+    <li><a href="#" onclick="showPage('photos')" id="nav-photos">Наши фото</a></li>
+    <li><a href="#" onclick="showPage('reviews')" id="nav-reviews">Отзывы</a></li>
+    <li><a href="#" onclick="showPage('form')" id="nav-form">Форма для заполнения</a></li>
+  </ul>
+</nav>
+
+<!-- ====== PAGE: HOME ====== -->
+<div class="page active" id="page-home">
+
+  <section id="home">
+    <h1>КЛИНИНГОВАЯ КОМПАНИЯ "УБОРКА КМВ"</h1>
+    <img class="hero-img" src="img_hero.jpg" alt="Клининговая компания Уборка КМВ" style="max-width:500px;width:100%;border-radius:12px;">
+  </section>
+
+  <!-- WHY US -->
+  <section>
+    <h2 class="section-title">ПОЧЕМУ МЫ?</h2>
+    <div class="three-cols">
+      <div class="col">
+        <img src="img_clean1.jpg" alt="Отличное качество" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid var(--green-light);">
+        <p>ОТЛИЧНОЕ КАЧЕСТВО</p>
+      </div>
+      <div class="col">
+        <img src="img_eco.png" alt="Эко-уборка" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid var(--green-light);">
+        <p>ЭКО-УБОРКА</p>
+      </div>
+      <div class="col">
+        <img src="img_calc.jpg" alt="Разумные цены" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid var(--green-light);">
+        <p>РАЗУМНЫЕ ЦЕНЫ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="gray">
+    <h2 class="section-title">УСЛУГИ</h2>
+    <div class="three-cols">
+      <div class="col">
+        <img src="img_support.jpg" alt="Уборка" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid #ccc;">
+        <p style="font-weight:400;font-size:14px;">Поддерживающая/комплексная/<br>генеральная уборка</p>
+      </div>
+      <div class="col">
+        <img src="img_windows.jpg" alt="Мойка окон" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid #ccc;">
+        <p style="font-weight:400;font-size:14px;">Мойка окон<br><span style="color:#888;font-size:12px;">1-2 исполнителя</span></p>
+      </div>
+      <div class="col">
+        <img src="img_sofa.jpg" alt="Химчистка" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid #ccc;">
+        <p style="font-weight:400;font-size:14px;">Химчистка<br><span style="color:#888;font-size:12px;">специальный исполнитель</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section>
+    <h2 class="section-title">НАШЕ ОБОРУДОВАНИЕ</h2>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto;">
+      <div style="width:180px;height:140px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+        <img src="img_equip1.jpg" alt="Оборудование" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="width:180px;height:140px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+        <img src="img_equip2.jpg" alt="Оборудование" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="width:180px;height:140px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+        <img src="img_equip3.jpg" alt="Оборудование" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="width:180px;height:140px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+        <img src="img_windows2.jpg" alt="Мойка окон на высоте" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="width:180px;height:140px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+        <img src="img_clean1.jpg" alt="Профессиональная уборка" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <div class="application-section">
+    <h2>Подать заявку</h2>
+    <div class="application-inner">
+      <div class="desc">Здесь Вы можете заполнить пустые поля для оформления необходимой Вам услуги.</div>
+      <div class="fields">
+        <input type="text" placeholder="Имя *">
+        <input type="tel" placeholder="+7 *** *** ** **">
+        <button class="btn-submit">Отправить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: SERVICES ====== -->
+<div class="page" id="page-services">
+  <section>
+    <h2 class="section-title">УСЛУГИ</h2>
+
+    <div class="service-item">
+      <img src="img_support.jpg" alt="Поддерживающая уборка" style="width:150px;height:150px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+      <div class="info">
+        <h3>ПОДДЕРЖИВАЮЩАЯ УБОРКА</h3>
+        <p>Это регулярная поддерживающая уборка квартир и частных домов, которая включает влажную и сухую уборку всех поверхностей, мытьё полов, протирку пыли, чистку сантехники и вынос мусора. Работа выполняется на высоте до 1.8м.</p>
+        <p>2-4 исполнителя;<br>удаляются все виды загрязнений;<br>работа 2-4 часа</p>
+        <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <img src="img_clean2.jpg" alt="Комплексная уборка" style="width:150px;height:150px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+      <div class="info">
+        <h3>КОМПЛЕКСНАЯ УБОРКА</h3>
+        <p>Это регулярная поддерживающая уборка квартир и частных домов, которая включает влажную и сухую уборку всех поверхностей, мытьё полов, протирку пыли, чистку сантехники и вынос мусора.</p>
+        <p>2-4 исполнителя;<br>удаляются все виды загрязнений;<br>работа 3-5 часов</p>
+        <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <img src="img_windows2.jpg" alt="Мойка окон на высоте" style="width:150px;height:150px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+      <div class="info">
+        <h3>МОЙКА ОКОН</h3>
+        <p>Протирка нокон, подоконников, оконных рам и москитных сеток. Работа на любой высоте.</p>
+        <p>1-2 исполнителя;<br>работа 2-5 часов</p>
+        <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <img src="img_sofa.jpg" alt="Химчистка" style="width:150px;height:150px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+      <div class="info">
+        <h3>ХИМИЧЕСКАЯ ЧИСТКА МЯГКОЙ МЕБЕЛИ</h3>
+        <p>Химчистка диванов, кресел, ковров и ковровых покрытий с использованием профессиональных экстракционных машин и гипоаллергенных моющих средств.</p>
+        <p>специальный исполнитель<br>минимальный заказ от 3 000 рублей</p>
+        <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:40px;">СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</h2>
+    <div class="special-grid">
+      <div class="special-card">
+        <div class="card-head">Уборка после ремонта</div>
+        <div class="card-body">
+          <p>2-4 исполнителя<br>полный комплекс работ, включая мойку мебели<br>уборка на любой высоте<br>работа 6-8 часов</p>
+          <div class="price">230 руб. (за 1м²)</div>
+          <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+        </div>
+      </div>
+      <div class="special-card">
+        <div class="card-head">Дезинфекция</div>
+        <div class="card-body">
+          <p>Работа специалистов</p>
+          <div class="price">400 руб. (за 1м²)</div>
+          <a class="btn-order" href="#" onclick="showPage('form')">Заказать</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:60px;">СКИДКИ</h2>
+    <div class="discount-item">
+      <img src="img_check.jpg" alt="Скидка" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;">
+      <div>
+        <strong>СКИДКА ПОСТОЯННЫМ КЛИЕНТАМ</strong>
+        <p>Для наших постоянных клиентов мы предоставляем скидку в размере 5%. Данная скидка может суммироваться с действующими акциями.</p>
+      </div>
+    </div>
+    <div class="discount-item">
+      <img src="img_check.jpg" alt="Скидка" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;">
+      <div>
+        <strong>СКИДКА ПЕНСИОНЕРАМ</strong>
+        <p>Уважаемые пенсионеры! Для Вас действует скидка 10% на постоянной основе при предъявлении пенсионного удостоверения.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="application-section">
+    <h2>Подать заявку</h2>
+    <div class="application-inner">
+      <div class="desc">Здесь Вы можете заполнить пустые поля для оформления необходимой Вам услуги.</div>
+      <div class="fields">
+        <input type="text" placeholder="Имя *">
+        <input type="tel" placeholder="+7 *** *** ** **">
+        <button class="btn-submit">Отправить</button>
+      </div>
+    </div>
+  </div>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: PRICES ====== -->
+<div class="page" id="page-prices">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <img src="img_prices.jpg" alt="Цены на клининг" style="max-width:380px;width:100%;border-radius:12px;">
+    </div>
+    <h2 class="section-title">Стоимость услуг</h2>
+    <div class="price-cards" style="margin-bottom:40px;">
+      <div class="price-card">
+        <div class="p-head">Поддерживающая уборка</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 м²</div>
+          <div class="p-price">110 руб</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="p-head">Комплексная уборка</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 м²</div>
+          <div class="p-price">130 руб</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="p-head">Генеральная уборка</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 м²</div>
+          <div class="p-price">190 руб</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="p-head">Уборка после ремонта</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 м²</div>
+          <div class="p-price">220 руб</div>
+        </div>
+      </div>
+    </div>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="p-head">Мойка окон</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 створку</div>
+          <div class="p-price">280 руб</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="p-head">Химчистка</div>
+        <div class="p-body">
+          <div class="p-label">Минимальный заказ</div>
+          <div class="p-price">3 000 руб</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="p-head">Дезинфекция</div>
+        <div class="p-body">
+          <div class="p-label">Стоимость за 1 м²</div>
+          <div class="p-price">130 руб</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: ABOUT ====== -->
+<div class="page" id="page-about">
+  <section>
+    <div class="about-wrap">
+      <img src="img_about.jpg" alt="О нас" style="width:280px;height:280px;border-radius:50%;object-fit:cover;flex-shrink:0;border:4px solid var(--green-light);">
+      <div>
+        <h2>О НАС</h2>
+        <p>«Чистота — роскошь современной жизни»</p>
+        <p>В результате многолетнего опыта работы в отелях, гостиницах, а также в частном секторе, родилась наша компания "Уборка КМВ".</p>
+        <p>В нашей компании работают только опытные высококвалифицированные специалисты, которые знают, как сделать Ваше пространство идеально чистым. Команда использует современное оборудование и безопасные средства, которые не наносят вреда вашему здоровью и окружающей среде.</p>
+        <p>"Уборка КМВ" — это не просто уборка помещений, это инвестиция в ваше благополучие и свободное время.</p>
+      </div>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: CONTACTS ====== -->
+<div class="page" id="page-contacts">
+  <section>
+    <div class="contacts-wrap">
+      <div class="contacts-info">
+        <h3>Контакты</h3>
+        <div class="ci">📞 <a href="tel:+79380779598">+7(938) 077-95-98</a></div>
+        <div class="ci">📍 г. Пятигорск, Крайнего 49</div>
+        <div class="ci">💬 <a href="#">Перейти в МАХ</a></div>
+        <div class="ci">✉️ <a href="mailto:mkumykov23@gmail.com">mkumykov23@gmail.com</a></div>
+        <div class="social-btns">
+          <a href="#" class="social-btn vk">ВКонтакте</a>
+          <a href="#" class="social-btn tg">Telegram</a>
+        </div>
+      </div>
+      <div class="map-placeholder" style="padding:0; background:none; overflow:hidden; border-radius:12px;">
+  <div style="position:relative;overflow:hidden; width:100%; height:100%; min-height:300px;">
+    <a href="https://yandex.ru/maps/11067/pyatigorsk/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Пятигорск</a>
+    <a href="https://yandex.ru/maps/11067/pyatigorsk/house/ulitsa_kraynego_49/YEoYdgBhQUUGQFpufXxyd3VkZA==/?ll=43.071801%2C44.036970&source=serp_navig&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты — транспорт, навигация, поиск мест</a>
+    <iframe src="https://yandex.ru/map-widget/v1/?ll=43.071801%2C44.036970&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTIzMDcyNjQyEmjQoNC-0YHRgdC40Y8sINCh0YLQsNCy0YDQvtC_0L7Qu9GM0YHQutC40Lkg0LrRgNCw0LksINCf0Y_RgtC40LPQvtGA0YHQuiwg0YPQu9C40YbQsCDQmtGA0LDQudC90LXQs9C-LCA0OSIKDYdJLEIV3CUwQg%2C%2C&source=serp_navig&z=17" 
+            width="100%" 
+            height="300" 
+            frameborder="0" 
+            allowfullscreen="true" 
+            style="border:0; display:block;">
+    </iframe>
+  </div>
+</div>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: PHOTOS ====== -->
+<div class="page" id="page-photos">
+  <section>
+    <h2 class="section-title">"ДО" и "ПОСЛЕ"</h2>
+    <div class="gallery-grid" style="margin-bottom:40px;">
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba4.png" alt="До и после" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba2.png" alt="До и после — краны" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba3.png" alt="До и после" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba1.png" alt="До и после" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba5.png" alt="До и после — окна" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gallery-item" style="background:#222;padding:0;">
+        <img src="img_ba6.png" alt="До и после — окна 2" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+
+    <h2 class="section-title">НАШИ СОТРУДНИКИ</h2>
+    <div class="employees-grid">
+      <div class="employee-card"><img src="img_staff2.jpg" alt="Наши сотрудники" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+      <div class="employee-card"><img src="img_staff1.jpg" alt="Наши сотрудники" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+      <div class="employee-card"><img src="img_staff3.jpg" alt="Наши сотрудники" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: REVIEWS ====== -->
+<div class="page" id="page-reviews">
+  <section class="gray">
+    <h2 class="section-title dark">ОТЗЫВЫ</h2>
+    <div class="review-carousel">
+      <div class="reviewer-name" id="rev-name">Вячеслав</div>
+      <div class="reviewer-role" id="rev-role">клиент</div>
+      <div class="review-text" id="rev-text">Заказывали химчистку дивана и матраса, Дмитрий с командой оказали услугу качественно! Рекомендуем</div>
+      <div class="dots">
+        <div class="dot active" onclick="setReview(0)"></div>
+        <div class="dot" onclick="setReview(1)"></div>
+        <div class="dot" onclick="setReview(2)"></div>
+        <div class="dot" onclick="setReview(3)"></div>
+        <div class="dot" onclick="setReview(4)"></div>
+        <div class="dot" onclick="setReview(5)"></div>
+        <div class="dot" onclick="setReview(6)"></div>
+        <div class="dot" onclick="setReview(7)"></div>
+        <div class="dot" onclick="setReview(8)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="review-form">
+      <h3>Оставьте Ваш отзыв</h3>
+      <input type="text" placeholder="Имя">
+      <input type="email" placeholder="E-mail">
+      <textarea placeholder="Ваше сообщение"></textarea>
+      <button class="btn-submit">отправить</button>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- ====== PAGE: FORM ====== -->
+<div class="page" id="page-form">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <img src="img_hero.jpg" alt="Уборка КМВ" style="max-width:320px;width:100%;border-radius:12px;">
+    </div>
+    <div class="form-wrap">
+      <h2 style="font-size:18px;font-weight:600;margin-bottom:20px;">Заявка на оформление услуги</h2>
+      <input type="text" placeholder="Имя">
+      <input type="email" placeholder="E-mail *">
+      <input type="text" placeholder="Тема">
+      <input type="tel" placeholder="+7 ** *** ** **">
+      <textarea placeholder="Ваше сообщение *"></textarea>
+      <label class="checkbox-label">
+        <input type="checkbox">
+        Я согласен на обработку <a href="privacy-policy.html" target="_blank">персональных данных</a> и с условиями <a href="terms-of-use.html" target="_blank">пользовательского соглашения</a>
+      </label>
+      <button class="btn-submit">отправить</button>
+    </div>
+  </section>
+  <footer>©2026 lean</footer>
+</div>
+
+<!-- FLOATING CALL BUTTON -->
+<a href="tel:+79380779598" class="float-call" title="Позвонить">📞</a>
+
+<script>
+  const reviews = [
+    { name: 'Вячеслав', role: 'клиент', text: 'Заказывали химчистку дивана и матраса, Дмитрий с командой оказали услугу качественно! Рекомендуем' },
+    { name: 'Елена', role: 'клиент', text: 'Очень довольна работой компании! Сделали генеральную уборку, всё блестит. Спасибо!' },
+    { name: 'Андрей', role: 'клиент', text: 'Заказывали мойку окон. Быстро, качественно, цена приемлемая. Рекомендую!' },
+    { name: 'Ольга', role: 'клиент', text: 'Прекрасный сервис! Сотрудники вежливые и аккуратные. Буду обращаться снова.' },
+    { name: 'Михаил', role: 'клиент', text: 'Уборка после ремонта — всё убрали идеально! Очень рекомендую эту компанию.' },
+    { name: 'Наталья', role: 'клиент', text: 'Обращались несколько раз. Всегда всё на высшем уровне. Спасибо!' },
+    { name: 'Дмитрий', role: 'клиент', text: 'Хорошая работа, пунктуальность, качество на уровне. Доволен.' },
+    { name: 'Светлана', role: 'клиент', text: 'Приятно иметь дело с профессионалами. Спасибо за чистоту!' },
+    { name: 'Иван', role: 'клиент', text: 'Отличная компания! Профессиональный подход к каждому клиенту.' },
+  ];
+
+  function setReview(idx) {
+    document.getElementById('rev-name').textContent = reviews[idx].name;
+    document.getElementById('rev-role').textContent = reviews[idx].role;
+    document.getElementById('rev-text').textContent = reviews[idx].text;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo(0, 0);
+    return false;
+  }
+
+  // Auto-scroll reviews
+  let currentReview = 0;
+  setInterval(() => {
+    currentReview = (currentReview + 1) % reviews.length;
+    setReview(currentReview);
+  }, 4000);
+</script>
+</body>
+</html>
